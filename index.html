@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br" class="">
+<head>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
+	<meta charset="UTF-8">
+	<meta name="description" content="Temporazidor Para Estudos">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" href="assets/images/favicon.png" type="image/x-icon">
+	<title>Focus Timer</title>
+	<script src="https://unpkg.com/@phosphor-icons/web"></script>
+	<link rel="stylesheet" href="./assets/styles/main.css">
+	<script type="module" src="./src/scripts/main.js" defer></script>
+</head>
+<body>
+	<button id="toggle-mode" type="button">
+		<span id="status-dark-mode" class="sr-only">Ativar Light Mode</span>
+		<i class="ph-toggle-mode ph-bold ph-sun"></i>
+		<i class="ph-toggle-mode ph-bold ph-moon"></i>
+	</button>
+	<div id="app">
+		<h1>Focus Timer</h1>
+		<main>
+			<section class="timer-and-controls">
+				<div id="timer" class="flex">
+					<span id="minutes">00</span>
+					<span>:</span>
+					<span id="seconds">00</span>
+				</div>
+				<div id="controls">
+					<button data-action="toggleRunning" class="ph-controls ph-bold ph-play-circle"></button>
+					<button data-action="toggleRunning" class="ph-controls ph-bold ph-pause-circle"></button>
+					<button data-action="reset" class="ph-controls ph-bold ph-stop-circle"></button>
+					<button data-action="set" class="ph-controls ph-bold ph-timer"></button>
+					<button data-action="addFiveMinutes" class="ph-controls ph-bold ph-plus-circle"></button>
+					<button data-action="removeFiveMinutes" class="ph-controls ph-bold ph-minus-circle"></button>
+				</div>
+			</section>
+			<section id="sounds">
+				<div id="container-btn-sounds">
+					<button data-action="toggleLofiMusic" class="ph-sounds ph-bold ph-radio"></button>
+					<button data-action="toggleRainSound" class="ph-sounds ph-bold ph-cloud-rain"></button>
+					<button data-action="toggleForestSound" class="ph-sounds ph-bold ph-tree-evergreen"></button>
+					<button data-action="toggleFireplaceSound" class="ph-sounds ph-bold ph-campfire"></button>
+				</div>
+			</section>
+		</main>
+	</div>
+</body>
+</html>

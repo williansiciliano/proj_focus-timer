@@ -1,0 +1,342 @@
+@charset "UTF-8";
+
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+
+}
+
+:root{
+	--hue: 270;
+	--bg-color: hsl(var(--hue), 0%, 8%);
+	--text-color: hsl(var(--hue), 0%, 30%);
+	--h1: hsl(var(--hue), 100%, 70%);
+	--primary-color: hsl(var(--hue), 100%, 70%);
+	--primary-color-light: hsl(var(--hue), 100%, 65%);
+	--controls-bg-color: hsl(var(--hue), 0%, 24%);
+	--controls-border-color: hsl(var(--hue), 100%, 70%);
+	--btn-controls-bg-color: hsl(var(--hue), 50%, 58%);
+	--btn-controls-color-hover: hsl(var(--hue), 100%, 70%);
+	--btn-sounds-bg-color: hsl(var(--hue), 2%, 90%);
+	--btn-sounds-bg-color-hover: hsl(var(--hue), 92%, 58%);
+	/* --btn-sounds-bg-color-hover: hsl(var(--hue), 100%, 70%); */
+	--btn-sounds-shadow-color-hover: hsl(var(--hue), 100%, 66%);
+	--button-secondary:hsl(var(--hue), 40%, 98%);	
+
+	/* GRAY COLORS */
+	--gray100: #F8F9FA;
+	--gray200: #E9ECEF;
+	--gray300: #DEE2E6;
+	--gray400: #CED4DA;
+	--gray500: #ADB5BD;
+	--gray600: #6C757D;
+	--gray700: #495057; 
+	--gray800: #343A40;
+	--gray900: #212529; 
+
+	--white: #fff;
+
+	font-size: clamp(40%, 1% + 2vw, 62.5%);
+}
+
+body{
+	display: grid;
+	place-content: center;
+	min-height: 100vh;
+	background-color: var(--bg-color);
+}
+
+/* BEGIN Toggle-Mode Style */
+#toggle-mode{
+	position: fixed;
+	top: 28px;
+	right: 16px;
+	background-color: transparent;
+	border: none;
+}
+
+/* Classe utilitária para fazer com que o botão de Light/Dark Mode seja lido por um Screen Reader */
+.sr-only{
+	/* tecnica para desaparecer com elemento sem mudar display */
+	width: 1px;
+	height: 1px;
+	position: absolute;
+	overflow: hidden;
+	/* props para funcionar em outros elementos */
+	margin: -1px;
+	padding: 0;
+	border: 0;
+	appearance: none; /* caso esteja dentro de botão e este apenas tenha o texto */
+}
+
+#toggle-mode .ph-toggle-mode{
+	font-size: 6.4rem;
+	border-radius: 8px;
+	cursor: pointer;
+	padding: 8px;
+}
+
+html.light .ph-toggle-mode{
+	color: var(--text-color);
+	border: 4px solid var(--text-color);
+}
+
+html:not(.light) .ph-toggle-mode{
+	color: var(--white);
+	border: 4px solid var(--white);
+}
+
+#toggle-mode .ph-toggle-mode:hover{
+	color: var(--primary-color);
+	border: 4px solid var(--primary-color);
+}
+
+html:not(.light) .ph-moon,
+html.light .ph-sun{
+	display: none;
+}
+
+.ph-moon{
+	border: 4px solid var(--gray700);
+}
+
+/* END Toggle-Mode Style */
+
+#app{
+	display: flex;
+	flex-direction: column;
+	gap: 72px;
+}
+
+#app > h1{
+	color: var(--h1);
+	font-family: "Orbitron", sans-serif;
+	font-size: 8rem;
+	text-align: center;
+}
+
+main {
+	display: flex;
+	width: 100vw;
+	justify-content: center;
+	gap: 16rem;
+	padding: 1.6rem;
+}
+
+section.timer-and-controls{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    border: 8px solid var(--controls-border-color);
+    border-radius: 16px;
+    padding: 8px 16px;
+		width: 37.6rem;
+		width: 40rem;
+}
+
+#timer{
+	margin-bottom: 8px;
+}
+
+#timer span{
+	font-size: 8rem;
+	color: var(--bg-color);
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	font-family: "Orbitron", sans-serif;
+}
+
+#timer #minutes:focus-visible{
+	background-color: var(--gray300);
+	outline-color: var(--h1);
+	outline-width: medium;
+	color: var(--h1);
+	opacity: 0.89;
+	border-radius: 8px;
+	padding-inline: 8px;
+
+}
+
+#controls{
+	background-color: var(--controls-bg-color);
+	border-radius: 48px;
+	padding: 8px;
+}
+
+.ph-controls {
+	font-size: 8rem;
+	color: var(--bg-color);
+	color: var(--gray300);
+	border-radius: 50%;
+	border: none;
+	background-color: transparent;
+	cursor: pointer;
+}
+
+.ph-controls:hover{
+	color: var(--btn-controls-color-hover)
+}
+
+html.running .ph-play-circle,
+html.running .ph-timer,
+html:not(.running) .ph-pause-circle,
+html:not(.running) .ph-stop-circle{
+	display: none;
+}
+
+div#container-btn-sounds
+{
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 2.4rem;
+	/* width: 24rem; */
+}
+
+.ph-sounds{
+	font-size: 10rem;
+	color: var(--bg-color);
+	border: none;
+	border-radius: 8px;
+	background-color: var(--btn-sounds-bg-color);
+	padding:8px;
+	cursor: pointer;
+}
+
+:focus-visible {	
+	outline: 2px solid var(--primary-color);		
+}
+
+.ph-sounds{
+	transition: all .2s ease;
+	box-shadow: inset 0 0 0 2px var(--gray600); /* adiciona uma borda interna */
+}
+
+.ph-controls:focus-visible{
+	outline: 2px solid var(--primary-color)!important;	
+
+}
+.ph-sounds:focus-visible{
+	outline: 4px solid var(--primary-color)!important;	
+}
+
+.ph-sounds:hover{
+	background-color: var(--gray400);
+	transform: scale(1.05);
+}
+
+.ph-sounds.playing{
+	background-color:var(--btn-sounds-bg-color-hover);
+	box-shadow: 0 0 2px 2px var(--btn-sounds-shadow-color-hover), 0 0 10px 5px var(--btn-sounds-shadow-color-hover), 0 0 20px 10px var(--btn-sounds-shadow-color-hover);
+	color: var(--gray400);
+	border: none;
+}
+
+.flex{
+	display: flex;
+}
+
+/* BEGIN Light Mode Style */
+html.light body{
+	background-color: var(--white);
+}
+
+html.light #toggle-mode .ph-toggle-mode:hover{
+	color: var(--primary-color-light);
+	border: 4px solid var(--primary-color-light);
+}
+
+html.light section.timer-and-controls{
+	background-color: var(--gray200);
+}
+
+html.light #app h1{
+	color: var(--primary-color-light)
+}
+
+html.light #timer #minutes:focus-visible{
+	background-color: var(--white);
+}
+
+html.light .ph-sounds.playing{
+	color: var(--gray200);
+	border: none;
+	box-shadow: none;
+	/* box-shadow: 0 0 2px 2px var(--btn-sounds-shadow-color-hover), 0 0 10px 5px var(--btn-sounds-shadow-color-hover);
+	box-shadow: 0 0 8px 8px var(--btn-sounds-shadow-color-hover), 0 0 10px 5px var(--btn-sounds-shadow-color-hover), 0 0 10px 5px var(--btn-sounds-shadow-color-hover); */
+}
+
+/* END Light Mode Style*/
+
+/* MEDIA QUERIES */
+@media (max-width: 767.98px){
+	main {
+		flex-direction: column;
+		align-items: center;
+	}
+
+	#toggle-mode{
+		top: 20px;
+		right: 8px;
+	}
+
+	#toggle-mode .ph-toggle-mode {
+    font-size: 4.8rem;
+
+	}
+}
+
+@media (max-width: 575.98px){
+	#app{
+		gap: 2.4rem
+	}
+
+	main{
+		gap: 3.6rem
+	}
+
+	section.timer-and-controls{
+		width: auto;
+	}
+
+	#app h1{
+		font-size: 5rem;
+	}
+
+	#timer span {
+    font-size: 5rem;
+	}
+
+	.ph-controls {
+    font-size: 6rem;
+	}
+
+	.ph-sounds {
+    font-size: 8rem;
+	}
+
+	.ph-sounds.playing{
+		box-shadow: 0 0 2px 2px var(--btn-sounds-shadow-color-hover), 0 0 5px 2px var(--btn-sounds-shadow-color-hover), 0 0 10px 5px var(--btn-sounds-shadow-color-hover);
+	}
+}
+
+@media (min-width: 576px) and (max-width: 767.98px){
+	#app{
+		gap: 4.8rem
+	}
+
+	#app h1{
+		font-size: 6rem;
+	}
+
+	main{
+		gap: 4.8rem
+	}
+}
+
+@media (min-width: 768px) and (max-width: 992px){
+	main {
+		gap: 5.6rem;
+	}
+}
